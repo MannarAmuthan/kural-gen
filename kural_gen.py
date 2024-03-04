@@ -51,7 +51,10 @@ def get_matching_kural( input_sentence ):
                 g = kural_vocab_embedding.most_similar(positive=[your_word_vector], topn=3)
                 if g[0][0] in generated:
                     choosed = random.choice(g)[0]
+                    count = 0
                     while choosed in generated:
+                        if count > len(g): break
+                        count += 1
                         choosed = random.choice(g)[0]
                     generated.append(choosed)
                 else:
